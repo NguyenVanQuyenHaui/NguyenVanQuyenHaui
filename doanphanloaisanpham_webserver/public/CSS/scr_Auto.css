@@ -1,0 +1,197 @@
+/*Màn hình tự động*/
+#Screen_Auto {   
+    position: absolute; 
+    left: 215px; top: 11px; 
+    width: 800px; height: 686px;
+    background-color: rgb(15, 228, 210); 
+}
+/*Symbol bang tai*/
+#sym_scrAuto_Bangtai1 {
+    position: absolute; 
+    left: 370px; top: 320px; 
+    width: 550px; height: 91px;
+}
+/*Symbol motor*/
+#sym_scrAuto_Motor1 {
+    position: absolute; 
+    left: 770px; top: 385px; 
+    width: 55px; height: 80px;
+}
+/*Symbol xylanh trung binh*/
+#sym_scrAuto_XylanhTB {
+    position: absolute; 
+    left: 745px; top: 220px; 
+    width: 30px; height: 30px;
+}
+
+/*Symbol xylanh cao*/
+#sym_scrAuto_XylanhCao {
+    position: absolute; 
+    left: 585px; top: 220px;  
+    width: 30px; height: 30px;
+}
+
+/*Symbol den che do auto*/
+#sym_scrAuto_LampAuto {
+    position: absolute; 
+    left: 180px; top: 310px;  
+    width: 30px; height: 30px;
+}
+/*Symbol den che do stop */
+#sym_scrAuto_LampStop {
+    position: absolute; 
+    left: 180px; top: 180px;  
+    width: 30px; height: 30px;
+}
+/*SSymbol den che do start*/
+#sym_scrAuto_LampStart {
+    position: absolute; 
+    left: 180px; top: 140px;  
+    width: 30px; height: 30px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*Nút nhấn chế độ tự động*/
+#btt_scrAuto_btt_Auto {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 310px;
+}
+/*Nút nhấn chế độ Reset*/
+#btt_scrAuto_btt_Reset {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 220px;
+}
+/*Nút nhấn chế độ Stop*/
+#btt_scrAuto_btt_Stop {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 180px;
+}
+/*Nút nhấn chế độ Start*/
+#btt_scrAuto_btt_Start {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 140px;
+}
+/*Nút nhấn chế độ Xuat du lieu*/
+#btt_scrAuto_data_Save {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 90px; height: 40px; 
+    left: 150px; top: 490px;
+}
+/*Nút nhấn chế độ trung bình*/
+#btt_scrAuto_simu_CB_TB {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 90px; height: 40px; 
+    left: 150px; top: 425px;
+}
+/*Nút nhấn chế độ Cao*/
+#btt_scrAuto_simu_CB_Cao {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 90px; height: 40px; 
+    left: 30px; top: 425px;
+}
+/*Nút nhấn chế độ Thấp*/
+#btt_scrAuto_simu_CB_Thap {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 90px; height: 40px; 
+    left: 30px; top: 490px;
+}
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+  
+#tbx_Act_SP_Cao {
+    position: absolute; 
+    left: 140px; top: 607px;  
+    width: 60px; height: 20px;
+}
+  
+#tbx_Act_SP_TB {
+    position: absolute; 
+    left: 140px; top: 642px;  
+    width: 60px; height: 20px;
+}
+  
+#tbx_Act_SP_Thap {
+    position: absolute; 
+    left: 140px; top: 677px;  
+    width: 60px; height: 20px;
+}
+  
+#tbx_Act_Tong_SP {
+    position: absolute; 
+    left: 140px; top: 712px;  
+    width: 60px; height: 20px;
+}
+#tbx_Simu_VT_SP {
+    position: absolute; 
+    left: 400px; top: 105px;  
+    width: 60px; height: 20px;
+}

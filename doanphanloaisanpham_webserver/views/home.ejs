@@ -1,0 +1,244 @@
+<html>
+    <!-- Phần Header của Website -->
+    <head>
+        <!-- ////////////// GỌI CÁC CSS //////////////  -->
+        <link rel="stylesheet" href= "CSS/slidebar.css">
+    <!--Goi file css trong thu muc css-->
+        <link rel="stylesheet" href= "CSS/scr_Auto.css">
+        <link rel="stylesheet" href= "CSS/scr_Manu.css">
+        <link rel="stylesheet" href= "CSS/scr_SQL.css"> 
+        <link rel="stylesheet" href= "CSS/login.css"> 
+        <link rel="stylesheet" type="text/css" href="CSS/bootstrap_css/bootstrap.css">
+        <!-- ////////////// CHƯƠNG TRÌNH HỆ THỐNG //////////////  -->
+        <title>Đồ án phân loại sản phẩm</title>
+        <script src = "socket.io/socket.io.js"></script> <!--Khai bao ham chuc nang ket noi thoi gian thuc giua plc va website-->
+        <script src = "js/FC1_Common.js"></script> <!--Su dung JavaScript <Script> goi chuong trinh con co ten FC1_Coomon.js trong thu muc js-->
+        <script src = "js/FC2_UserManagement.js"></script> 
+        <script src = "js/FC3_SQL.js"></script>
+        <script src = "js/jquery-3.6.0.min.js"></script>
+        <script src = "js/FileSaver.js"></script>
+        <script type="text/javascript" src="js/bootstrap_js/bootstrap.js"></script>
+        <script>
+            var socket = io("localhost:3000"); // IP tĩnh (hoặc IP động, hoặc localhost)
+        </script>
+    </head>
+    <!-- Phần Thân của Website -->
+    <body>
+      <!-- ////////////// CHƯƠNG TRÌNH ĐĂNG NHẬP HỆ THỐNG //////////////  -->
+     <div id="div_login">
+        <div id="id01" class="modal">
+            <form id = "modal-content1" class="modal-content animate">
+            <div id = "img_container" class="imgcontainer">
+                <span id = "closebtt" onclick="document.getElementById('id01').style.display='none'; logout();" class="close" title="Close Modal">&times;</span>
+                <img id = "img_avatar" src="images/user.png" alt="Avatar" class="avatar">
+            </div>
+        
+            <div id = "log_container" class="container">
+                <label for="uname"><b>Username</b></label>
+                <input id = "inputuser" type="text" placeholder="Enter Username" name="uname" required>
+        
+                <label for="psw"><b>Password</b></label>
+                <input id = "inputpass" type="password" placeholder="Enter Password" name="psw" required>
+                
+                <button id = "bttlogin1" type="button" onclick="login();">Login</button>
+                <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+                </label>
+            </div>
+        
+            <div id = "login_container" class="container" style="background-color:#f1f1f1">
+                <button id = "bttcancle" type="button" onclick="document.getElementById('id01').style.display='none'; logout();" class="cancelbtn">Cancel</button>
+                <span id = "psw" class="psw">Forgot <a href="#">password?</a></span>
+            </div>
+            </form>
+        </div>
+    </div> 
+    <!-- ////////////// Code cho slidebar////////////// -->
+        <div id = "slidebar"> 
+            </div>
+            <!--Nhan hien thi ngay-->
+            <label id ="lbl_Date">08/04/2022</label>
+            <!--Nhan hien thi gio-->
+            <label id ="lbl_Time">18:20:25</label>
+            <!--Watchdog-->
+            <label id = "lbl_Plc_Connect" >PLC ĐANG KẾT NỐI ..... </label> 
+            <script>fn_CheckPlcConnect('lbl_Plc_Connect','WatchDog');</script>    
+            <!--Nút chọn màn hình Auto-->
+            <button type = "button" class = "btn btn-primary" id="btt_Screen_Auto" onclick="
+                fn_ScreenChange('Screen_Auto','Screen_Manu','Screen_SQL');
+            ">TỰ ĐỘNG</button>
+            <!--Nút chọn màn hình Manu-->
+            <button type = "button" class = "btn btn-primary" id="btt_Screen_Manu" onclick=" 
+                fn_ScreenChange('Screen_Manu','Screen_Auto','Screen_SQL');
+            ">BẰNG TAY</button>      
+             <!--Nút chọn màn hình Hien thi du lieu SQL-->
+             <button type = "button" class = "btn btn-primary" id="btt_Screen_SQL" onclick=" 
+             fn_ScreenChange('Screen_SQL','Screen_Manu','Screen_Auto');
+             fn_Table01_SQL_Show();
+             ">DỮ LIỆU</button>         
+             <!--Nút đăng nhập/đăng xuất-->
+            <button type = "button" class = "btn btn-success" id="bttLogin" class="btn" onclick="login();
+                 window.location.reload();
+                ">ĐĂNG NHẬP</button>
+            <button type = "button" class = "btn btn-danger" id="bttLogout" class="btn" onclick="logout();
+                ">ĐĂNG XUẤT</button> 
+
+        </div>
+    <!-- //////////////Code cho màn hình tự động////////////// -->
+        <div id = "Screen_Auto">
+         <!-- //////////////HÌNH NÊN////////////// -->
+             <img src="images/scr_Auto.PNG">
+            <!-- Symbol bang tai -->
+            <img id = "sym_scrAuto_Bangtai1" ><script> fn_SymbolStatus("sym_scrAuto_Bangtai1", "Bangtai1", "Q_BANG_TAI"); </script>
+            <!-- Symbol motor -->
+            <img id = "sym_scrAuto_Motor1" ><script> fn_SymbolStatus("sym_scrAuto_Motor1", "Motor1", "status_Motor"); </script>
+             <!-- Symbol xylanh trung binh -->
+            <img id = "sym_scrAuto_XylanhTB" ><script> fn_SymbolStatus("sym_scrAuto_XylanhTB", "LampAuto1", "Xylanh_TB"); </script>
+             <!-- Symbol xylanh cao -->
+            <img id = "sym_scrAuto_XylanhCao" ><script> fn_SymbolStatus("sym_scrAuto_XylanhCao", "LampAuto1", "Xylanh_Cao"); </script>
+             <!-- Symbol den che do auto -->
+            <img id = "sym_scrAuto_LampAuto" ><script> fn_SymbolStatus("sym_scrAuto_LampAuto", "LampAuto1", "Q_Lamp_Auto"); </script>
+             <!-- Symbol den che do stop  -->
+            <img id = "sym_scrAuto_LampStop" ><script> fn_SymbolStatus("sym_scrAuto_LampStop", "LampStop1", "Q_Lamp_Stop"); </script>
+             <!-- Symbol den che do start -->
+            <img id = "sym_scrAuto_LampStart" ><script> fn_SymbolStatus("sym_scrAuto_LampStart", "LampAuto1", "Q_Lamp_Start");</script>
+             <!-- Symbol vật di chuyển 
+            <img id = "sym_scrAuto_LampStart" ><script> fn_SymbolStatus("sym_scrAuto_LampStart", "LampAuto1", "Q_Lamp_Start");</script>-->
+        <!-- //////////////NÚT NHẤN ĐIỀU KHIỂN////////////// -->
+            <!-- Chọn chế độ tự động -->
+            <button id="btt_scrAuto_btt_Auto" onclick= "socket.emit('scrAuto_btt_Auto', true);">TỰ ĐỘNG</button>
+            <!--Mau nen nut nhan AUTO -->
+         <script>fn_btt_Color('Q_Lamp_Auto', 'btt_scrAuto_btt_Auto', 'rgb(0, 255, 15)', 'gray');</script> 
+      
+            <!-- Chọn chế độ Reset -->
+             <button id="btt_scrAuto_btt_Reset" onclick= "socket.emit('scrAuto_btt_Reset', true);">RESET</button>
+             <script>fn_btt_Color('btt_Reset', 'btt_scrAuto_btt_Reset', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ STOP -->
+            <button id="btt_scrAuto_btt_Stop" onclick= "socket.emit('scrAuto_btt_Stop', true);">STOP</button>
+            <!--Mau nen nut nhan STOP -->
+            <script>fn_btt_Color('Q_Lamp_Stop', 'btt_scrAuto_btt_Stop', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ START -->
+            <button id="btt_scrAuto_btt_Start" onclick= "socket.emit('scrAuto_btt_Start', true);">START</button>
+            <!--Mau nen nut nhan START -->
+            <script>fn_btt_Color('Q_Lamp_Start', 'btt_scrAuto_btt_Start', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ XUAT DU LIEU -->
+            <button id="btt_scrAuto_data_Save" onclick= "socket.emit('scrAuto_data_Save', true);">XUẤT DỮ LIỆU</button>
+            <script>fn_btt_Color('data_Save', 'btt_scrAuto_data_Save', 'rgb(0, 255, 15)', 'gray');</script>
+             <!-- Chọn chế độ MO PHONG TRANG THAI TRUNG BINH -->
+            <button id="btt_scrAuto_simu_CB_TB" onclick= "socket.emit('scrAuto_simu_CB_TB', true);">TRUNG BÌNH</button>
+            <script>fn_btt_Color('simu_CB_TB', 'btt_scrAuto_simu_CB_TB', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ MO PHONG TRANG THAI CAO -->
+            <button id="btt_scrAuto_simu_CB_Cao" onclick= "socket.emit('scrAuto_simu_CB_Cao', true);">CAO</button>
+            <script>fn_btt_Color('simu_CB_Cao', 'btt_scrAuto_simu_CB_Cao', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ MO PHONG TRANG THAI THAP -->
+            <button id="btt_scrAuto_simu_CB_Thap" onclick= "socket.emit('scrAuto_simu_CB_Thap', true);">THẤP</button>
+            <script>fn_btt_Color('simu_CB_Thap', 'btt_scrAuto_simu_CB_Thap', 'rgb(0, 255, 15)', 'gray');</script>
+            
+         <!-- //////////////HIỂN THỊ DỮ LIỆU IO FIELD////////////// -->
+            <!-- Giá trị thực tế SẢN PHẨM CAO -->
+            <input id="tbx_Act_SP_Cao" disabled="disabled" type="text" />   
+            <script>fn_IOFieldDataShow("Act_SP_Cao", "tbx_Act_SP_Cao", 0);</script> 
+            <!-- Giá trị thực tế SẢN PHẨM TRUNG BÌNH -->
+            <input id="tbx_Act_SP_TB" disabled="disabled" type="text" />     
+            <script>fn_IOFieldDataShow("Act_SP_TB", "tbx_Act_SP_TB", 0);</script> 
+             <!-- Giá trị thực tế SẢN PHẨM THẤP -->
+            <input id="tbx_Act_SP_Thap" disabled="disabled" type="text" />     
+            <script>fn_IOFieldDataShow("Act_SP_Thap", "tbx_Act_SP_Thap", 0);</script> 
+             <!-- Giá trị thực tế TỔNG SẢN PHẨM  -->
+            <input id="tbx_Act_Tong_SP" disabled="disabled" type="text" />     
+            <script>fn_IOFieldDataShow("Act_Tong_SP", "tbx_Act_Tong_SP", 0);</script>         
+             <!-- Giá trị thực tế Vi tri san pham -->
+            <input id="tbx_Simu_VT_SP" disabled="disabled" type="text" />     
+            <script>fn_IOFieldDataShow("Simu_VT_SP", "tbx_Simu_VT_SP", 0);</script>         
+
+        </div> 
+    <!-- //////////////Code cho màn hình bằng tay////////////// -->
+        <div id = "Screen_Manu">
+        <!-- //////////////HÌNH NÊN////////////// -->
+            <img src="images/scr_Manu.PNG">
+            <!-- Symbol bang tai -->
+            <img id = "sym_scrManu_Bangtai1" ><script> fn_SymbolStatus("sym_scrManu_Bangtai1", "Bangtai1", "Q_BANG_TAI"); </script>
+            <!-- Symbol motor -->
+            <img id = "sym_scrManu_Motor1" ><script> fn_SymbolStatus("sym_scrManu_Motor1", "Motor1", "status_Motor"); </script>
+             <!-- Symbol xylanh trung binh -->
+            <img id = "sym_scrManu_XylanhTB" ><script> fn_SymbolStatus("sym_scrManu_XylanhTB", "LampAuto1", "Xylanh_TB"); </script>
+             <!-- Symbol xylanh cao -->
+            <img id = "sym_scrManu_XylanhCao" ><script> fn_SymbolStatus("sym_scrManu_XylanhCao", "LampAuto1", "Xylanh_Cao"); </script>
+             <!-- Symbol den che do manu -->
+            <img id = "sym_scrManu_LampManu" ><script> fn_SymbolStatus("sym_scrManu_LampManu", "LampAuto1", "Q_Lamp_Manu"); </script>
+             <!-- Symbol den che do stop  -->
+            <img id = "sym_scrManu_LampStop" ><script> fn_SymbolStatus("sym_scrManu_LampStop", "LampStop1", "Q_Lamp_Stop"); </script>
+             <!-- Symbol den che do start -->
+            <img id = "sym_scrManu_LampStart" ><script> fn_SymbolStatus("sym_scrManu_LampStart", "LampAuto1", "Q_Lamp_Start");</script>
+        <!-- //////////////NÚT NHẤN ĐIỀU KHIỂN////////////// -->
+            <!-- Chọn chế độ STOP -->
+            <button id="btt_scrManu_btt_Stop" onclick= "socket.emit('scrManu_btt_Stop', true);">STOP</button>
+            <!--Mau nen nut nhan STOP -->
+            <script>fn_btt_Color('Q_Lamp_Stop', 'btt_scrManu_btt_Stop', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ START -->
+            <button id="btt_scrManu_btt_Start" onclick= "socket.emit('scrManu_btt_Start', true);">START</button>
+            <!--Mau nen nut nhan START -->
+            <script>fn_btt_Color('Q_Lamp_Start', 'btt_scrManu_btt_Start', 'rgb(0, 255, 15)', 'gray');</script>
+            <!-- Chọn chế độ XLC ON -->
+            <button id="btt_scrManu_btt_XLC_ON" onclick= "socket.emit('scrManu_btt_XLC_ON', true);">ON XLC</button>
+            <script>fn_btt_Color('Xylanh_Cao', 'btt_scrManu_btt_XLC_ON', 'rgb(0, 255, 15)', 'gray');</script>
+        
+            <!-- Chọn chế độ XLC OFF -->
+            <button id="btt_scrManu_btt_XLC_OFF" onclick= "socket.emit('scrManu_btt_XLC_OFF', true);">OFF XLC</button>
+            <script>fn_btt_Color('btt_XLC_OFF', 'btt_scrManu_btt_XLC_OFF', 'rgb(0, 255, 15)', 'gray');</script>
+       
+            <!-- Chọn chế độ XLTB ON -->
+            <button id="btt_scrManu_btt_XLTB_ON" onclick= "socket.emit('scrManu_btt_XLTB_ON', true);">ON XLTB</button>
+            <script>fn_btt_Color('Xylanh_TB', 'btt_scrManu_btt_XLTB_ON', 'rgb(0, 255, 15)', 'gray');</script>
+       
+            <!-- Chọn chế độ XLTB OFF -->
+            <button id="btt_scrManu_btt_XLTB_OFF" onclick= "socket.emit('scrManu_btt_XLTB_OFF', true);">OFF XLTB</button>
+            <script>fn_btt_Color('btt_XLTB_OFF', 'btt_scrManu_btt_XLTB_OFF', 'rgb(0, 255, 15)', 'gray');</script>
+       
+            <!-- Chọn chế độ MOTOR START -->
+            <button id="btt_scrManu_btt_Motor_Run" onclick= "socket.emit('scrManu_btt_Motor_Run', true);">MOTOR START</button>
+            <script>fn_btt_Color('btt_Motor_Run', 'btt_scrManu_btt_Motor_Run', 'rgb(0, 255, 15)', 'gray');</script>
+ 
+            <!-- Chọn chế độ MOTOR STOP -->
+            <button id="btt_scrManu_btt_Motor_Stop" onclick= "socket.emit('scrManu_btt_Motor_Stop', true);">MOTOR STOP</button>
+            <script>fn_btt_Color('btt_Motor_Stop', 'btt_scrManu_btt_Motor_Stop', 'rgb(0, 255, 15)', 'gray');</script>
+ 
+            <!-- Chọn chế độ MOTOR loi -->
+            <button id="btt_scrManu_simu_Motor_loi" onclick= "socket.emit('scrManu_simu_Motor_loi', true);">MOTOR LOI</button>
+            <script>fn_btt_Color('simu_Motor_loi', 'btt_scrManu_simu_Motor_loi', 'rgb(0, 255, 15)', 'gray');</script>
+ 
+            <!-- Chọn chế độ MANU -->
+            <button id="btt_scrManu_btt_Manu" onclick= "socket.emit('scrManu_btt_Manu', true);">BẰNG TAY</button>
+            <!--Mau nen nut nhan MANU -->
+            <script>fn_btt_Color('Q_Lamp_Manu', 'btt_scrManu_btt_Manu', 'rgb(0, 255, 15)', 'gray');</script>
+             <!-- Symbol vật di chuyển 
+            <img id = "sym_scrAuto_LampStart" ><script> fn_SymbolStatus("sym_scrAuto_LampStart", "LampAuto1", "Q_Lamp_Start");</script>-->   
+        </div>   
+        <!-- //////////////Code cho màn hình SQL////////////// -->
+        <div id = "Screen_SQL">
+              <!--Table display-->
+            <div id = "div_Table_01">
+            <table id="table_01" >
+                    <thead>
+                    <tr>
+                        <th>Thời gian</th>
+                        <th>Sản phẩm cao</th>
+                        <th>Sản phẩm trung bình</th>
+                        <th>Sản phẩm thấp</th>
+                        <th>Tổng sản phẩm</th>
+                        </tr>
+                        </thead>
+                    </table>
+            </div>
+            <!--Date time piker-->
+                    <label id="lb_Search_Start">Từ:</label>
+                    <input id="dtpk_Search_Start" type="datetime-local">
+                    <label id="lb_Search_End">Đến:</label>
+                    <input id="dtpk_Search_End" type="datetime-local">
+                <!--Nút tìm kiếm-->
+                    <button id="btt_Search" class="btn" onclick="fn_SQL_By_Time();"></i> TÌM KIẾM</button>
+                <!--Nút Xuất báo cáo Excel-->
+                    <button id="btt_Excel" class="btn" onclick="fn_excel();"></i> BÁO CÁO</button>
+          </div>   
+    </body>
+</html>

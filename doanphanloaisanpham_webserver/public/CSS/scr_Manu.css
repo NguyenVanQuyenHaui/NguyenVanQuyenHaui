@@ -1,0 +1,194 @@
+/*Màn hình bằng tay*/
+#Screen_Manu {
+    position: absolute; 
+    left: 215px; top: 11px; 
+    width: 800px; height: 686px;
+    background-color: rgb(15, 228, 210); 
+}
+/*Symbol bang tai*/
+#sym_scrManu_Bangtai1 {
+    position: absolute; 
+    left: 370px; top: 320px; 
+    width: 550px; height: 91px;
+}
+/*Symbol motor*/
+#sym_scrManu_Motor1 {
+    position: absolute; 
+    left: 770px; top: 385px; 
+    width: 55px; height: 80px;
+}
+/*Symbol xylanh trung binh*/
+#sym_scrManu_XylanhTB {
+    position: absolute; 
+    left: 745px; top: 220px; 
+    width: 30px; height: 30px;
+}
+
+/*Symbol xylanh cao*/
+#sym_scrManu_XylanhCao {
+    position: absolute; 
+    left: 585px; top: 220px;  
+    width: 30px; height: 30px;
+}
+/*Symbol den che do Manu*/
+#sym_scrManu_LampManu {
+    position: absolute; 
+    left: 180px; top: 495px;  
+    width: 30px; height: 30px;
+}
+/*Symbol den che do stop */
+#sym_scrManu_LampStop {
+    position: absolute; 
+    left: 180px; top: 200px;  
+    width: 30px; height: 30px;
+}
+/*SSymbol den che do start*/
+#sym_scrManu_LampStart {
+    position: absolute; 
+    left: 180px; top: 145px;  
+    width: 30px; height: 30px;
+}
+
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*Nút nhấn chế độ Manu*/
+#btt_scrManu_btt_Manu {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 495px;
+}
+/*Nút nhấn chế độ Stop*/
+#btt_scrManu_btt_Stop {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 200px;
+}
+/*Nút nhấn chế độ Start*/
+#btt_scrManu_btt_Start {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 145px;
+}
+/*Nút nhấn chế độ motor loi*/
+#btt_scrManu_simu_Motor_loi {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 50px; 
+    left: 755px; top: 480px;
+}
+/*Nút nhấn  XLC ON*/
+#btt_scrManu_btt_XLC_ON {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 255px;
+}
+/*Nút nhấn  XLC OFF*/
+#btt_scrManu_btt_XLC_OFF {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 150px; top: 255px;
+}
+/*Nút nhấn  XLTB OFF*/
+#btt_scrManu_btt_XLTB_OFF {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 150px; top: 315px;
+}
+/*Nút nhấn  XLTB ON*/
+#btt_scrManu_btt_XLTB_ON {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 30px; 
+    left: 30px; top: 315px;
+}
+
+/*Nút nhấn  MOTOR ON*/
+#btt_scrManu_btt_Motor_Run {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 50px; 
+    left: 30px; top: 370px;
+}
+/*Nút nhấn  MOTOR ON*/
+#btt_scrManu_btt_Motor_Stop {  
+    border: none;   
+    background-color: rgb(12, 238, 151);  
+    color: rgb(255, 255, 255);    
+    text-align: center; 
+    display: inline-block; 
+    font-size: 13px; 
+    font-weight: bold;
+    cursor: pointer;  
+    position: absolute;   
+    width: 80px; height: 50px; 
+    left: 150px; top: 370px;
+}

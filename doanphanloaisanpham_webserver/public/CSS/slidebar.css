@@ -1,0 +1,72 @@
+/*Slide bar chính*/
+#slidebar {
+    position: absolute; 
+    left: 5px; top: 11px; 
+    width: 198px; height: 760px;
+    background-color: rgb(51, 0, 30); 
+}
+/*Hien thi Date */
+#lbl_Date {
+    position: absolute; 
+    color: rgb(255, 255, 255);  
+    text-align: center; 
+    display: inline-block;
+    font-size: 28px; 
+    font-weight: bold;
+    left: 20px; top: 20px;  
+}
+/*Hien thi time */
+#lbl_Time {
+    position: absolute; 
+    color: rgb(255, 255, 255);  
+    text-align: center; 
+    display: inline-block;
+    font-size: 28px; 
+    font-weight: bold;
+    left: 30px; top: 50px;  
+}
+/*Nút Màn tự động*/
+#btt_Screen_Auto {
+    cursor: pointer;
+    position: absolute; 
+    width: 150px; height: 40px; 
+    left: 25px; top: 120px;
+}
+/*Nút Màn hình bằng tay*/
+#btt_Screen_Manu {
+     cursor: pointer;
+    position: absolute; 
+    width: 150px; height: 40px; 
+    left: 25px; top: 170px;
+}
+/*Nút ĐĂNG NHẬP*/
+#bttLogin {
+    cursor: pointer;
+    position: absolute; 
+    width: 150px; height: 40px; 
+    left: 25px; top: 600px;
+}
+/*Nút ĐĂNG XUẤT*/
+#bttLogout {
+    cursor: pointer;
+    position: absolute; 
+    width: 150px; height: 40px; 
+    left: 25px; top: 650px;
+}
+/*Nút Màn hình SQL*/
+#btt_Screen_SQL {
+    cursor: pointer;
+    position: absolute; 
+    width: 150px; height: 40px; 
+    left: 25px; top: 220px;
+}
+/*Nút Watchdog*/
+#lbl_Plc_Connect {
+    position: absolute; 
+    color: rgb(255, 255, 255);  
+    text-align: center; 
+    display: inline-block;
+    font-size: 17px; 
+    font-weight: bold;
+    left: 30px; top: 720px;  
+}
